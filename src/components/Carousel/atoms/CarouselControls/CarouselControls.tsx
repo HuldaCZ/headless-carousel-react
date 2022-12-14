@@ -8,6 +8,7 @@ interface CarouselControlsProps {
   onSlideChange?: (index: number) => void;
   wrapperStyle?: React.CSSProperties;
   numberStyle?: React.CSSProperties;
+  children?: React.ReactNode;
 }
 
 const CarouselControls = ({
@@ -15,7 +16,8 @@ const CarouselControls = ({
   slidesCount,
   onSlideChange,
   wrapperStyle,
-  numberStyle
+  numberStyle,
+  children
 }: CarouselControlsProps): JSX.Element => {
   const slidePages = useMemo(() => {
     const pages = [];
@@ -30,20 +32,38 @@ const CarouselControls = ({
 
   return (
     <div className={styles.wrapper} {...{ style: wrapperStyle }}>
-      {slidePages.map((page) => (
-        <div
-          key={page}
-          className={classNames(styles.slidePage, {
-            [styles.slidePage_active]: page === activeSlide + 1
-          })}
-          onClick={() => onSlideChange && onSlideChange(page - 1)}
-          {...{ style: numberStyle }}
-        >
-          {page}
-        </div>
-      ))}
+      {children}
     </div>
   );
 };
+
+interface CarouselControlItemProps {
+  onClick?: () => void;
+  style?: React.CSSProperties;
+  className?: string;
+  children?: React.ReactNode;
+  activeClass?: string;
+  isActive?: boolean;
+}
+
+const CarouselControlItem = ({
+  onClick,
+  style,
+  className,
+  children,
+  isActive,
+  activeClass
+}: CarouselControlItemProps): JSX.Element => {
+  return (
+    <div
+      className={classNames(styles.slidePage, className, { [activeClass || '']: isActive })}
+      {...{ style, onClick }}
+    >
+      {children}
+    </div>
+  );
+};
+
+CarouselControls.Item = CarouselControlItem;
 
 export default CarouselControls;
