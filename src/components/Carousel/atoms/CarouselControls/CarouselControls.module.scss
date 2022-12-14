@@ -1,0 +1,22 @@
+.wrapper {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slidePage {
+  width: 2.6rem;
+  height: 2.6rem;
+  font-size: 1.6rem;
+  padding: 0.2rem;
+  border-radius: 50%;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  &_active {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.258);
+  }
+}

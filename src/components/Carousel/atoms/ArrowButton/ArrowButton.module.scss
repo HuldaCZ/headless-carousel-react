@@ -1,0 +1,30 @@
+.button {
+    z-index: 1000;
+    position: absolute;
+    top: 50%;
+    width: 10rem;
+    height: 10rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.195);
+    border-radius: 50%;
+  
+    &_left {
+      left: 0;
+      transform: translate(-50%, -50%);
+      justify-content: flex-end;
+    }
+  
+    &_right {
+      right: 0;
+      transform: translate(50%, -50%);
+      justify-content: flex-start;
+    }
+  }
+  
