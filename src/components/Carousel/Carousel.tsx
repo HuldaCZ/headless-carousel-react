@@ -6,7 +6,7 @@ import CarouselItem from './atoms/CarouselItem/CarouselItem';
 import styles from './Carousel.module.scss';
 import { handleInfinityLoop } from './CarouselFunctions/handleInfinityLoop';
 import { calculateZindex } from './CarouselFunctions/calculateZindex';
-import ArrowButton from './atoms/ArrowButton/ArrowButton';
+import ArrowButton from './atoms/SideButton/SideButton';
 import CarouselControls from './atoms/CarouselControls/CarouselControls';
 
 export type CarouselItem = {
@@ -69,8 +69,8 @@ const Carousel = ({ data }: CarouselProps): JSX.Element => {
   return (
     <div className={styles.wrapper}>
       <Carousel.CarouselSection>
-        <ArrowButton onClick={handleDecrease} direction="left" color="white" />
-        <ArrowButton onClick={handleIncrease} direction="right" color="white" />
+        <ArrowButton onClick={handleDecrease} side="left" />
+        <ArrowButton onClick={handleIncrease} side="right" />
         <CarouselView>
           {data.map(({ image, title }, index) => (
             <CarouselItem

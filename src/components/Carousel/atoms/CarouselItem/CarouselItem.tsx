@@ -28,7 +28,7 @@ const CarouselItem = ({
   translateRatio
 }: CarouselItemProps): JSX.Element => {
   const translateX = useMemo(() => {
-    return index * (translateRatio ? translateRatio : 50);
+    return index * (translateRatio ? translateRatio : 130);
   }, [index]);
 
   const transformZoomIn = `translateX(${translateX}%) scale(${1 - Math.abs(index) * 0.5}) rotateX(${
@@ -39,6 +39,7 @@ const CarouselItem = ({
 
   return (
     <div
+      data-testid="CarouselItem"
       className={classNames(styles.wrapper, className)}
       style={{
         transform: animation === 'zoomIn' ? transformZoomIn : transformSlide,

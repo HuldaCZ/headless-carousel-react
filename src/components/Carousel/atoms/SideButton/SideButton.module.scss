@@ -1,0 +1,18 @@
+.button {
+    z-index: 1000;
+    position: absolute;
+    top: 50%;
+    width: 5rem;
+    height: 5rem;
+    cursor: pointer;
+    transform: translateY(-50%);
+  
+    &_left {
+      left: 0;
+    }
+  
+    &_right {
+      right: 0;
+    }
+  }
+  
