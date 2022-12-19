@@ -6,8 +6,8 @@ import styles from './CarouselControls.module.scss';
 interface CarouselControlsProps {
   onSlideChange?: (index: number) => void;
   wrapperStyle?: React.CSSProperties;
-  numberStyle?: React.CSSProperties;
-  numberClass?: string;
+  itemStyle?: React.CSSProperties;
+  itemClass?: string;
   activeClass?: string;
   wrapperClass?: string;
 }
@@ -15,8 +15,8 @@ interface CarouselControlsProps {
 const CarouselControls = ({
   onSlideChange,
   wrapperStyle,
-  numberStyle,
-  numberClass,
+  itemStyle,
+  itemClass,
   activeClass,
   wrapperClass
 }: CarouselControlsProps): JSX.Element => {
@@ -44,8 +44,8 @@ const CarouselControls = ({
             onSlideChange && onSlideChange(page - 1);
           }}
           isActive={page - 1 === activeIndex}
-          style={numberStyle}
-          className={numberClass}
+          style={itemStyle}
+          className={itemClass}
           activeClass={activeClass}
         >
           {page}

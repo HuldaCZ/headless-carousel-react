@@ -37,7 +37,7 @@
   align-items: center;
   background-color: rgba(0, 0, 0, 0.195);
   border-radius: 50%;
-  
+
   &_left {
     left: 0;
     transform: translate(-50%, -50%);
@@ -48,5 +48,24 @@
     right: 0;
     transform: translate(50%, -50%);
     justify-content: flex-start;
+  }
+}
+
+.carousel_controls_item {
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.068);
+  }
+
+  &_active {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.258);
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.258);
+    }
   }
 }

@@ -38,7 +38,10 @@ const CarouselOne = (): JSX.Element => {
           ))}
         </>
       </Carousel.CarouselView>
-      <Carousel.CarouselControls />
+      <Carousel.CarouselControls
+        activeClass={styles.carousel_controls_item_active}
+        itemClass={styles.carousel_controls_item}
+      />
     </Carousel>
   );
 };
