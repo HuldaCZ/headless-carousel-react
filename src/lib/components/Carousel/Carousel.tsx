@@ -1,14 +1,14 @@
-import classNames from 'classnames';
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import CarouselItem from './atoms/CarouselItem/CarouselItem';
 
 import styles from './Carousel.module.scss';
 import { handleInfinityLoop } from './CarouselFunctions/handleInfinityLoop';
+
 import ArrowButton from './atoms/SideButton/SideButton';
 import CarouselControls from './atoms/CarouselControls/CarouselControls';
 
-import { createContext } from "react";
+import { createContext } from 'react';
 
 interface CarouselContextInterface {
   activeIndex: number;
@@ -25,7 +25,7 @@ export const CarouselCtx = createContext<CarouselContextInterface>({
   dataLength: 0,
   setDataLength: (length) => {},
   onTouchStart: (e) => {},
-  onTouchMove: (e) => {},
+  onTouchMove: (e) => {}
 });
 
 export type CarouselItem = {
@@ -44,7 +44,7 @@ const Carousel = ({ data, children }: CarouselProps): JSX.Element => {
   const [touchPosition, setTouchPosition] = useState<number>(0);
   const carouselRef = useRef<HTMLDivElement>(null);
 
-  const handleIncrease = () => { 
+  const handleIncrease = () => {
     setActiveIndex(handleInfinityLoop(activeIndex + 1, data.length));
   };
 
@@ -92,16 +92,16 @@ const Carousel = ({ data, children }: CarouselProps): JSX.Element => {
   }, [data]);
 
   return (
-    <CarouselCtx.Provider value={{ activeIndex, setActiveIndex, dataLength, setDataLength, onTouchStart, onTouchMove}}>
-    <div className={styles.wrapper}>
-      {children}
-    </div>
+    <CarouselCtx.Provider
+      value={{ activeIndex, setActiveIndex, dataLength, setDataLength, onTouchStart, onTouchMove }}
+    >
+      <div className={styles.wrapper}>{children}</div>
     </CarouselCtx.Provider>
   );
 };
 
 interface CarouselElemnt {
-  children?: JSX.Element | JSX.Element[] 
+  children?: JSX.Element | JSX.Element[];
   style?: React.CSSProperties;
 }
 
