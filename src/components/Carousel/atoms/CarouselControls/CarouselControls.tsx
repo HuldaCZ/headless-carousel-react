@@ -1,38 +1,55 @@
 import classNames from 'classnames';
-import { useMemo } from 'react';
+import { useContext, useMemo } from 'react';
+import { CarouselCtx } from '../../Carousel';
 import styles from './CarouselControls.module.scss';
 
 interface CarouselControlsProps {
-  activeSlide: number;
-  slidesCount: number;
   onSlideChange?: (index: number) => void;
   wrapperStyle?: React.CSSProperties;
   numberStyle?: React.CSSProperties;
-  children?: React.ReactNode;
+  numberClass?: string;
+  activeClass?: string;
+  wrapperClass?: string;
 }
 
 const CarouselControls = ({
-  activeSlide,
-  slidesCount,
   onSlideChange,
   wrapperStyle,
   numberStyle,
-  children
+  numberClass,
+  activeClass,
+  wrapperClass
 }: CarouselControlsProps): JSX.Element => {
+  const {activeIndex, setActiveIndex, dataLength} = useContext(CarouselCtx);
+  
   const slidePages = useMemo(() => {
     const pages = [];
     for (let i = -3; i <= 3; i++) {
-      const page = activeSlide + i;
-      if (page >= 0 && page < slidesCount) {
+      const page = activeIndex + i;
+      if (page >= 0 && page < dataLength) {
         pages.push(page + 1);
       }
     }
     return pages;
-  }, [activeSlide, slidesCount]);
+  }, [activeIndex, dataLength]);
 
   return (
-    <div className={styles.wrapper} {...{ style: wrapperStyle }}>
-      {children}
+    <div className={classNames(styles.wrapper, wrapperClass)} {...{ style: wrapperStyle }}>
+      {slidePages.map((page, index) => (
+        <CarouselControls.Item
+          key={index}
+          onClick={() => {
+            setActiveIndex(page - 1);
+            onSlideChange && onSlideChange(page - 1);
+          }}
+          isActive={page - 1 === activeIndex}
+          style={numberStyle}
+          className={numberClass}
+          activeClass={activeClass}
+        >
+          {page}
+        </CarouselControls.Item>
+      ))}
     </div>
   );
 };

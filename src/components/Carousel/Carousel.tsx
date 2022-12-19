@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 
 import CarouselItem from './atoms/CarouselItem/CarouselItem';
 
@@ -9,6 +9,22 @@ import { calculateZindex } from './CarouselFunctions/calculateZindex';
 import ArrowButton from './atoms/SideButton/SideButton';
 import CarouselControls from './atoms/CarouselControls/CarouselControls';
 
+import { createContext } from "react";
+
+interface CarouselContextInterface {
+  activeIndex: number;
+  setActiveIndex: (index: number) => void;
+  dataLength: number;
+  setDataLength: (length: number) => void;
+}
+
+export const CarouselCtx = createContext<CarouselContextInterface>({
+  activeIndex: 0,
+  setActiveIndex: (index) => {},
+  dataLength: 0,
+  setDataLength: (length) => {},
+});
+
 export type CarouselItem = {
   id: string;
   image: string;
@@ -16,19 +32,22 @@ export type CarouselItem = {
 };
 interface CarouselProps {
   data: CarouselItem[];
+  children?: React.ReactNode;
 }
 
-const Carousel = ({ data }: CarouselProps): JSX.Element => {
+const Carousel = ({ data, children }: CarouselProps): JSX.Element => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [dataLength, setDataLength] = useState<number>(0);
   const [touchPosition, setTouchPosition] = useState<number>(0);
   const carouselRef = useRef<HTMLDivElement>(null);
 
-  const handleIncrease = () => {
-    setActiveIndex((prev) => handleInfinityLoop(prev + 1, data.length));
+  const handleIncrease = () => { 
+    // update activeIndex in context
+    setActiveIndex(handleInfinityLoop(activeIndex + 1, data.length));
   };
 
   const handleDecrease = () => {
-    setActiveIndex((prev) => handleInfinityLoop(prev - 1, data.length));
+    setActiveIndex(handleInfinityLoop(activeIndex - 1, data.length));
   };
 
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -66,36 +85,21 @@ const Carousel = ({ data }: CarouselProps): JSX.Element => {
     };
   }, []);
 
+  useEffect(() => {
+    setDataLength(data.length);
+  }, [data]);
+
   return (
+    <CarouselCtx.Provider value={{ activeIndex, setActiveIndex, dataLength, setDataLength}}>
     <div className={styles.wrapper}>
-      <Carousel.CarouselSection>
-        <ArrowButton onClick={handleDecrease} side="left" />
-        <ArrowButton onClick={handleIncrease} side="right" />
-        <CarouselView>
-          {data.map(({ image, title }, index) => (
-            <CarouselItem
-              key={index}
-              index={index - activeIndex}
-              zIndex={calculateZindex(index, activeIndex, data.length)}
-              onTouchStart={handleTouchStart}
-              onTouchMove={handleTouchMove}
-              className={styles.carousel_item}
-              {...{ image, title }}
-            />
-          ))}
-        </CarouselView>
-      </Carousel.CarouselSection>
-      <CarouselControls
-        activeSlide={activeIndex}
-        slidesCount={data.length}
-        onSlideChange={setActiveIndex}
-      />
+      {children}
     </div>
+    </CarouselCtx.Provider>
   );
 };
 
 interface CarouselElemnt {
-  children: JSX.Element | JSX.Element[];
+  children?: JSX.Element | JSX.Element[] 
   style?: React.CSSProperties;
 }
 

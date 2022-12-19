@@ -1,5 +1,6 @@
 import classNames from 'classnames';
-import { useMemo } from 'react';
+import { useContext, useMemo } from 'react';
+import { CarouselCtx } from '../../Carousel';
 
 import styles from './CarouselItem.module.scss';
 
@@ -27,9 +28,11 @@ const CarouselItem = ({
   animation,
   translateRatio
 }: CarouselItemProps): JSX.Element => {
+  const {activeIndex} = useContext(CarouselCtx);
+
   const translateX = useMemo(() => {
-    return index * (translateRatio ? translateRatio : 130);
-  }, [index]);
+    return (index - activeIndex) * (translateRatio ? translateRatio : 130);
+  }, [index, activeIndex, translateRatio]);
 
   const transformZoomIn = `translateX(${translateX}%) scale(${1 - Math.abs(index) * 0.5}) rotateX(${
     index * 10
