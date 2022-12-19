@@ -6,9 +6,6 @@ import styles from './CarouselItem.module.scss';
 
 interface CarouselItemProps {
   index: number;
-  zIndex?: number;
-  onTouchStart?: (e: React.TouchEvent) => void;
-  onTouchMove?: (e: React.TouchEvent) => void;
   image?: string;
   title?: string;
   children?: React.ReactNode;
@@ -19,20 +16,22 @@ interface CarouselItemProps {
 
 const CarouselItem = ({
   index,
-  zIndex,
-  onTouchMove,
-  onTouchStart,
   image,
   children,
   className,
   animation,
   translateRatio
 }: CarouselItemProps): JSX.Element => {
-  const {activeIndex} = useContext(CarouselCtx);
+  const {activeIndex, dataLength, onTouchMove, onTouchStart} = useContext(CarouselCtx);
 
   const translateX = useMemo(() => {
     return (index - activeIndex) * (translateRatio ? translateRatio : 130);
   }, [index, activeIndex, translateRatio]);
+
+  const zIndex = useMemo(() => {
+    return dataLength - Math.abs(index - activeIndex);
+  }, [index, activeIndex]);
+
 
   const transformZoomIn = `translateX(${translateX}%) scale(${1 - Math.abs(index) * 0.5}) rotateX(${
     index * 10
@@ -42,7 +41,7 @@ const CarouselItem = ({
 
   return (
     <div
-      data-testid="CarouselItem"
+      data-testid={`carousel-item-${index}`}
       className={classNames(styles.wrapper, className)}
       style={{
         transform: animation === 'zoomIn' ? transformZoomIn : transformSlide,

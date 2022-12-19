@@ -5,7 +5,6 @@ import CarouselItem from './atoms/CarouselItem/CarouselItem';
 
 import styles from './Carousel.module.scss';
 import { handleInfinityLoop } from './CarouselFunctions/handleInfinityLoop';
-import { calculateZindex } from './CarouselFunctions/calculateZindex';
 import ArrowButton from './atoms/SideButton/SideButton';
 import CarouselControls from './atoms/CarouselControls/CarouselControls';
 
@@ -16,6 +15,8 @@ interface CarouselContextInterface {
   setActiveIndex: (index: number) => void;
   dataLength: number;
   setDataLength: (length: number) => void;
+  onTouchStart: (e: React.TouchEvent) => void;
+  onTouchMove: (e: React.TouchEvent) => void;
 }
 
 export const CarouselCtx = createContext<CarouselContextInterface>({
@@ -23,6 +24,8 @@ export const CarouselCtx = createContext<CarouselContextInterface>({
   setActiveIndex: (index) => {},
   dataLength: 0,
   setDataLength: (length) => {},
+  onTouchStart: (e) => {},
+  onTouchMove: (e) => {},
 });
 
 export type CarouselItem = {
@@ -42,7 +45,6 @@ const Carousel = ({ data, children }: CarouselProps): JSX.Element => {
   const carouselRef = useRef<HTMLDivElement>(null);
 
   const handleIncrease = () => { 
-    // update activeIndex in context
     setActiveIndex(handleInfinityLoop(activeIndex + 1, data.length));
   };
 
@@ -50,12 +52,12 @@ const Carousel = ({ data, children }: CarouselProps): JSX.Element => {
     setActiveIndex(handleInfinityLoop(activeIndex - 1, data.length));
   };
 
-  const handleTouchStart = (e: React.TouchEvent) => {
+  const onTouchStart = (e: React.TouchEvent) => {
     const touchDown = e.touches[0].clientX;
     setTouchPosition(touchDown);
   };
 
-  const handleTouchMove = (e: React.TouchEvent) => {
+  const onTouchMove = (e: React.TouchEvent) => {
     const touchDown = touchPosition;
     if (touchDown === null) {
       return;
@@ -90,7 +92,7 @@ const Carousel = ({ data, children }: CarouselProps): JSX.Element => {
   }, [data]);
 
   return (
-    <CarouselCtx.Provider value={{ activeIndex, setActiveIndex, dataLength, setDataLength}}>
+    <CarouselCtx.Provider value={{ activeIndex, setActiveIndex, dataLength, setDataLength, onTouchStart, onTouchMove}}>
     <div className={styles.wrapper}>
       {children}
     </div>
@@ -111,15 +113,6 @@ const CarouselView = ({ children, style }: CarouselElemnt) => {
   );
 };
 
-const CarouselSection = ({ children, style }: CarouselElemnt) => {
-  return (
-    <div className={styles.carousel} {...{ style }}>
-      {children}
-    </div>
-  );
-};
-
-Carousel.CarouselSection = CarouselSection;
 Carousel.ArrowButton = ArrowButton;
 Carousel.CarouselControls = CarouselControls;
 Carousel.CarouselView = CarouselView;

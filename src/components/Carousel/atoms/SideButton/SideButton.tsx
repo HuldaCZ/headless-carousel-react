@@ -26,6 +26,7 @@ const SideButton = ({ side, onClick, style, children, className }: SideButtonPro
 
   return (
     <button
+      data-testid={`button-${side}`}
       {...{ style }}
       className={classNames(
         styles.button,

@@ -20,8 +20,8 @@ const CarouselControls = ({
   activeClass,
   wrapperClass
 }: CarouselControlsProps): JSX.Element => {
-  const {activeIndex, setActiveIndex, dataLength} = useContext(CarouselCtx);
-  
+  const { activeIndex, setActiveIndex, dataLength } = useContext(CarouselCtx);
+
   const slidePages = useMemo(() => {
     const pages = [];
     for (let i = -3; i <= 3; i++) {
@@ -38,6 +38,7 @@ const CarouselControls = ({
       {slidePages.map((page, index) => (
         <CarouselControls.Item
           key={index}
+          index={index}
           onClick={() => {
             setActiveIndex(page - 1);
             onSlideChange && onSlideChange(page - 1);
@@ -56,6 +57,7 @@ const CarouselControls = ({
 
 interface CarouselControlItemProps {
   onClick?: () => void;
+  index?: number;
   style?: React.CSSProperties;
   className?: string;
   children?: React.ReactNode;
@@ -65,6 +67,7 @@ interface CarouselControlItemProps {
 
 const CarouselControlItem = ({
   onClick,
+  index,
   style,
   className,
   children,
@@ -73,6 +76,7 @@ const CarouselControlItem = ({
 }: CarouselControlItemProps): JSX.Element => {
   return (
     <div
+      data-testid={`carousel-control-${index}`}
       className={classNames(styles.slidePage, className, { [activeClass || '']: isActive })}
       {...{ style, onClick }}
     >
