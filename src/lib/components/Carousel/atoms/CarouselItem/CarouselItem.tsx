@@ -36,8 +36,7 @@ const CarouselItem = ({
   const transformZoomIn = `translateX(${translateX}%) scale(${
     1 - Math.abs(index - activeIndex) * 0.5
   })`;
-  console.log(zIndex, activeIndex, index);
-  
+
   const transformSlide = `translateX(${translateX}%)`;
 
   return (

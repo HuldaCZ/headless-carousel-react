@@ -19,8 +19,24 @@ export const usersApi = createApi({
           image: collection.cover_image_url
         }));
       }
+    }),
+    getUsersStories: builder.query<CarouselItem[], null>({
+      query: () => ({
+        url: `/feeds/users%2F2166257779239552048%2Ffeeds%2Fcollection-stories%3Fcontext%3D2279792120556423125`,
+        method: 'GET',
+        headers: {
+          "Accept": "application/json"
+        }
+      }),
+      transformResponse: (response: any) => {
+        return response.data.map((item: any) => ({
+          id: item.story.item.id,
+          title: item.story.item.title,
+          image: item.story.item.cover_src
+        }));
+      }
     })
   })
 });
 
-export const { useGetUsersCollectionsQuery } = usersApi;
+export const { useGetUsersCollectionsQuery, useGetUsersStoriesQuery } = usersApi;
