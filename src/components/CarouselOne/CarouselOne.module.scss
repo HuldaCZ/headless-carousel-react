@@ -1,0 +1,23 @@
+.carousel_item {
+  width: 70%;
+  height: 30rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  position: absolute;
+  transition: all 0.5s ease-in-out;
+  box-shadow: 0 0 2px 3px rgba(0, 0, 0, 0.05);
+  border-radius: 2rem;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #fff;
+}
+
+.carousel_view {
+  height: 32rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

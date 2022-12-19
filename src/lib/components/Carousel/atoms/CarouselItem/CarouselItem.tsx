@@ -22,21 +22,22 @@ const CarouselItem = ({
   animation,
   translateRatio
 }: CarouselItemProps): JSX.Element => {
-  const {activeIndex, dataLength, onTouchMove, onTouchStart} = useContext(CarouselCtx);
+  const { activeIndex, dataLength, onTouchMove, onTouchStart } = useContext(CarouselCtx);
 
   const translateX = useMemo(() => {
     return (index - activeIndex) * (translateRatio ? translateRatio : 130);
   }, [index, activeIndex, translateRatio]);
 
   const zIndex = useMemo(() => {
+    if (index === activeIndex) return dataLength + 1;
     return dataLength - Math.abs(index - activeIndex);
   }, [index, activeIndex]);
 
-
-  const transformZoomIn = `translateX(${translateX}%) scale(${1 - Math.abs(index) * 0.5}) rotateX(${
-    index * 10
-  }deg)`;
-
+  const transformZoomIn = `translateX(${translateX}%) scale(${
+    1 - Math.abs(index - activeIndex) * 0.5
+  })`;
+  console.log(zIndex, activeIndex, index);
+  
   const transformSlide = `translateX(${translateX}%)`;
 
   return (

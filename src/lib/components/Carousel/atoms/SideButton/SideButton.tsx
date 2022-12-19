@@ -17,9 +17,9 @@ const SideButton = ({ side, onClick, style, children, className }: SideButtonPro
 
   const handleClick = () => {
     if (side === 'left') {
-      setActiveIndex(handleInfinityLoop(activeIndex + 1, dataLength));
-    } else {
       setActiveIndex(handleInfinityLoop(activeIndex - 1, dataLength));
+    } else {
+      setActiveIndex(handleInfinityLoop(activeIndex + 1, dataLength));
     }
     onClick && onClick();
   };

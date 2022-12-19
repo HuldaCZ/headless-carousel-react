@@ -9,6 +9,7 @@ import ArrowButton from './atoms/SideButton/SideButton';
 import CarouselControls from './atoms/CarouselControls/CarouselControls';
 
 import { createContext } from 'react';
+import classNames from 'classnames';
 
 interface CarouselContextInterface {
   activeIndex: number;
@@ -103,11 +104,12 @@ const Carousel = ({ data, children }: CarouselProps): JSX.Element => {
 interface CarouselElemnt {
   children?: JSX.Element | JSX.Element[];
   style?: React.CSSProperties;
+  className?: string;
 }
 
-const CarouselView = ({ children, style }: CarouselElemnt) => {
+const CarouselView = ({ children, style, className }: CarouselElemnt) => {
   return (
-    <div className={styles.carousel_view} tabIndex={0} {...{ style }}>
+    <div className={classNames(styles.carousel_view, className)} tabIndex={0} {...{ style }}>
       {children}
     </div>
   );

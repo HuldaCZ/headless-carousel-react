@@ -1,5 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { CarouselItem } from '../components/Carousel/Carousel';
+
+interface CarouselItem {
+  id: string;
+  title: string;
+  image: string;
+}
 
 export const usersApi = createApi({
   reducerPath: 'usersApi',
