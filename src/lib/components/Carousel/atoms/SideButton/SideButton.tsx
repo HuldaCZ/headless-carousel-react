@@ -1,7 +1,9 @@
-import classNames from 'classnames';
 import { useContext } from 'react';
+import classNames from 'classnames';
+
 import { CarouselCtx } from '../../Carousel';
 import { handleInfinityLoop } from '../../CarouselFunctions/handleInfinityLoop';
+
 import styles from './SideButton.module.scss';
 
 interface SideButtonProps {

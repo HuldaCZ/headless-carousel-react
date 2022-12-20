@@ -1,15 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
-
-import CarouselItem from './atoms/CarouselItem/CarouselItem';
-
-import styles from './Carousel.module.scss';
-import { handleInfinityLoop } from './CarouselFunctions/handleInfinityLoop';
-
-import ArrowButton from './atoms/SideButton/SideButton';
-import CarouselControls from './atoms/CarouselControls/CarouselControls';
-
 import { createContext } from 'react';
 import classNames from 'classnames';
+
+import CarouselControls from './atoms/CarouselControls/CarouselControls';
+import CarouselItem from './atoms/CarouselItem/CarouselItem';
+import ArrowButton from './atoms/SideButton/SideButton';
+import { handleInfinityLoop } from './CarouselFunctions/handleInfinityLoop';
+
+import styles from './Carousel.module.scss';
 
 interface CarouselContextInterface {
   activeIndex: number;

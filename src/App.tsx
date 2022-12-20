@@ -1,6 +1,7 @@
-import styles from './App.module.scss';
 import CarouselOne from './components/CarouselOne/CarouselOne';
 import CarouselTwo from './components/CarouselTwo/CarouselTwo';
+
+import styles from './App.module.scss';
 
 function App() {
   return (

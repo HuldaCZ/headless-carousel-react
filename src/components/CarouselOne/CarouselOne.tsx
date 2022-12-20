@@ -1,8 +1,9 @@
 import classNames from 'classnames';
+
 import { useGetUsersCollectionsQuery } from '../../api/users';
-import { Carousel } from '../../lib';
-import { ReactComponent as ArrowRight } from '../../icons/arrow-right.svg';
 import { ReactComponent as ArrowLeft } from '../../icons/arrow-left.svg';
+import { ReactComponent as ArrowRight } from '../../icons/arrow-right.svg';
+import { Carousel } from '../../lib';
 
 import styles from './CarouselOne.module.scss';
 

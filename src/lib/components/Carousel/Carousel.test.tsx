@@ -1,5 +1,6 @@
-import { render, screen } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
+import { render, screen } from '@testing-library/react';
+
 import Carousel from './Carousel';
 
 const data = [

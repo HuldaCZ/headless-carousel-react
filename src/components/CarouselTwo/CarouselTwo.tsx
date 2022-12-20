@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+
 import { useGetUsersStoriesQuery } from '../../api/users';
 import { Carousel } from '../../lib';
 

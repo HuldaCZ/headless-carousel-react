@@ -1,5 +1,6 @@
-import classNames from 'classnames';
 import { useContext, useMemo } from 'react';
+import classNames from 'classnames';
+
 import { CarouselCtx } from '../../Carousel';
 
 import styles from './CarouselItem.module.scss';
