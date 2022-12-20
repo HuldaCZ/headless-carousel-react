@@ -33,9 +33,7 @@ const CarouselOne = (): JSX.Element => {
               {...{ image }}
               animation="zoomIn"
               translateRatio={50}
-            >
-              <h2>{title}</h2>
-            </Carousel.CarouselItem>
+            ></Carousel.CarouselItem>
           ))}
         </>
       </Carousel.CarouselView>

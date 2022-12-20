@@ -7,9 +7,11 @@ function App() {
   return (
     <div className={styles.app}>
       <div className={styles.carousel_wrapper}>
+        <h2>Collections</h2>
         <CarouselOne />
       </div>
       <div className={styles.carousel_wrapper}>
+        <h2>Stories</h2>
         <CarouselTwo />
       </div>
     </div>

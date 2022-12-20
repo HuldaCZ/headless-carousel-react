@@ -32,9 +32,7 @@ const CarouselTwo = () => {
               {...{ image }}
               animation="slide"
               translateRatio={150}
-            >
-              <h2>{title}</h2>
-            </Carousel.CarouselItem>
+            ></Carousel.CarouselItem>
           ))}
         </>
       </Carousel.CarouselView>
