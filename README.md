@@ -1,5 +1,7 @@
 # React Headless Carousel
 
+Demo: https://petrhuli.cz/headless/
+
 In the App.tsx file you can find example usage.
 
 ## Available Component Parts
