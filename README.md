@@ -30,11 +30,11 @@ Props:
 
 - index: number;
 - image?: string;
-  - title?: string;
-  - children?: React.ReactNode;
-  - className?: string;
-  - animation?: 'zoomIn' | 'slide';
-  - translateRatio?: number;
+- title?: string;
+- children?: React.ReactNode;
+- className?: string;
+- animation?: 'zoomIn' | 'slide';
+- translateRatio?: number;
 
 ### Carousel.SideButton
 
