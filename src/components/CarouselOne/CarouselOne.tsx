@@ -10,21 +10,21 @@ import styles from './CarouselOne.module.scss';
 const CarouselOne = (): JSX.Element => {
   const { data: usersCollectionData } = useGetUsersCollectionsQuery(null);
   return (
-    <Carousel dataLengthProps={usersCollectionData?.length || 0}>
+    <Carousel dataLengthProp={usersCollectionData?.length || 0}>
       <Carousel.CarouselView className={styles.carousel_view}>
         <>
-          <Carousel.ArrowButton
+          <Carousel.SideButton
             side="left"
             className={classNames(styles.button, styles.button_left)}
           >
             <ArrowLeft />
-          </Carousel.ArrowButton>
-          <Carousel.ArrowButton
+          </Carousel.SideButton>
+          <Carousel.SideButton
             side="right"
             className={classNames(styles.button, styles.button_right)}
           >
             <ArrowRight />
-          </Carousel.ArrowButton>
+          </Carousel.SideButton>
           {usersCollectionData?.map(({ image, title }, index) => (
             <Carousel.CarouselItem
               key={index}

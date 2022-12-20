@@ -31,23 +31,23 @@ export const CarouselCtx = createContext<CarouselContextInterface>({
 });
 
 interface CarouselProps {
-  dataLengthProps: number;
+  dataLengthProp: number;
   children?: React.ReactNode;
 }
 
-const Carousel = ({ dataLengthProps, children }: CarouselProps): JSX.Element => {
+const Carousel = ({ dataLengthProp, children }: CarouselProps): JSX.Element => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [dataLength, setDataLength] = useState<number>(0);
   const [touchPosition, setTouchPosition] = useState<number>(0);
   const carouselRef = useRef<HTMLDivElement | null>(null);
 
   const handleIncrease = useCallback(() => {
-    setActiveIndex(handleInfinityLoop(activeIndex + 1, dataLengthProps));
-  }, [activeIndex, dataLengthProps]);
+    setActiveIndex(handleInfinityLoop(activeIndex + 1, dataLengthProp));
+  }, [activeIndex, dataLengthProp]);
 
   const handleDecrease = useCallback(() => {
-    setActiveIndex(handleInfinityLoop(activeIndex - 1, dataLengthProps));
-  }, [activeIndex, dataLengthProps]);
+    setActiveIndex(handleInfinityLoop(activeIndex - 1, dataLengthProp));
+  }, [activeIndex, dataLengthProp]);
 
   const onTouchStart = (e: React.TouchEvent) => {
     const touchDown = e.touches[0].clientX;
@@ -73,23 +73,23 @@ const Carousel = ({ dataLengthProps, children }: CarouselProps): JSX.Element => 
 
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if (e.key === 'ArrowRight' && carouselRef.current === document.activeElement) {
-      setActiveIndex(handleInfinityLoop(activeIndex + 1, dataLengthProps));
+      setActiveIndex(handleInfinityLoop(activeIndex + 1, dataLengthProp));
     }
     if (e.key === 'ArrowLeft' && carouselRef.current === document.activeElement) {
-      setActiveIndex(handleInfinityLoop(activeIndex - 1, dataLengthProps));
+      setActiveIndex(handleInfinityLoop(activeIndex - 1, dataLengthProp));
     }
-  }, [activeIndex, dataLengthProps]);
+  }, [activeIndex, dataLengthProp]);
 
   useEffect(() => {
     document.addEventListener('keydown', handleKeyDown, true);
     return () => {
       document.removeEventListener('keydown', handleKeyDown, true);
     };
-  }, [activeIndex, dataLengthProps, handleKeyDown]);
+  }, [activeIndex, dataLengthProp, handleKeyDown]);
 
   useEffect(() => {
-    setDataLength(dataLengthProps);
-  }, [dataLengthProps]);
+    setDataLength(dataLengthProp);
+  }, [dataLengthProp]);
 
   return (
     <CarouselCtx.Provider
@@ -112,7 +112,6 @@ interface CarouselElemnt {
   children?: JSX.Element | JSX.Element[];
   style?: React.CSSProperties;
   className?: string;
-  ref?: React.RefObject<HTMLDivElement>;
 }
 
 const CarouselView = ({ children, style, className }: CarouselElemnt) => {
@@ -129,7 +128,7 @@ const CarouselView = ({ children, style, className }: CarouselElemnt) => {
   );
 };
 
-Carousel.ArrowButton = ArrowButton;
+Carousel.SideButton = ArrowButton;
 Carousel.CarouselControls = CarouselControls;
 Carousel.CarouselView = CarouselView;
 Carousel.CarouselItem = CarouselItem;

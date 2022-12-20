@@ -32,7 +32,7 @@ const data = [
 
 test('render image ass css backgound and display title as child', () => {
   render(
-    <Carousel dataLengthProps={data.length}>
+    <Carousel dataLengthProp={data.length}>
       <Carousel.CarouselView>
         {data.map(({ image, title }, index) => (
           <Carousel.CarouselItem key={index} index={index} className="carousel_item" {...{ image }}>
@@ -52,8 +52,8 @@ test('render image ass css backgound and display title as child', () => {
 
 test('after clicking on left button activeIndex value in context should increase by 1', () => {
   render(
-    <Carousel dataLengthProps={data.length}>
-      <Carousel.ArrowButton side="left" />
+    <Carousel dataLengthProp={data.length}>
+      <Carousel.SideButton side="left" />
       <Carousel.CarouselView>
         {data.map(({ image, title }, index) => (
           <Carousel.CarouselItem key={index} index={index} className="carousel_item" {...{ image }}>
@@ -74,8 +74,8 @@ test('after clicking on left button activeIndex value in context should increase
 
 test('after clicking on right button activeIndex value in context should decrease by 1', () => {
   render(
-    <Carousel dataLengthProps={data.length}>
-      <Carousel.ArrowButton side="right" />
+    <Carousel dataLengthProp={data.length}>
+      <Carousel.SideButton side="right" />
       <Carousel.CarouselView>
         {data.map(({ image, title }, index) => (
           <Carousel.CarouselItem key={index} index={index} className="carousel_item" {...{ image }}>
@@ -96,7 +96,7 @@ test('after clicking on right button activeIndex value in context should decreas
 
 test('select item after clicking on carousel control number', () => {
   render(
-    <Carousel dataLengthProps={data.length}>
+    <Carousel dataLengthProp={data.length}>
       <Carousel.CarouselView>
         {data.map(({ image, title }, index) => (
           <Carousel.CarouselItem key={index} index={index} className="carousel_item" {...{ image }}>

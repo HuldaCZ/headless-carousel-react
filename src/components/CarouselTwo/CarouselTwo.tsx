@@ -9,21 +9,21 @@ const CarouselTwo = () => {
   const { data: usersStories } = useGetUsersStoriesQuery(null);
 
   return (
-    <Carousel dataLengthProps={usersStories?.length || 0}>
+    <Carousel dataLengthProp={usersStories?.length || 0}>
       <Carousel.CarouselView className={styles.carousel_view}>
         <>
-          <Carousel.ArrowButton
+          <Carousel.SideButton
             side="left"
             className={classNames(styles.button, styles.button_left)}
           >
             Prev
-          </Carousel.ArrowButton>
-          <Carousel.ArrowButton
+          </Carousel.SideButton>
+          <Carousel.SideButton
             side="right"
             className={classNames(styles.button, styles.button_right)}
           >
             Next
-          </Carousel.ArrowButton>
+          </Carousel.SideButton>
           {usersStories?.map(({ image, title }, index) => (
             <Carousel.CarouselItem
               key={index}
