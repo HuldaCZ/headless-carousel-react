@@ -1,6 +1,6 @@
 # React Headless Carousel
 
-Demo: https://petrhuli.cz/headless/
+Demo: https://petrhuli.cz/carousel/
 
 In the App.tsx file you can find example usage.
 
