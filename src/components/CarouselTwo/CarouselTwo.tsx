@@ -30,8 +30,8 @@ const CarouselTwo = () => {
               index={index}
               className={styles.carousel_item}
               {...{ image }}
-              animation="zoomIn"
-              translateRatio={50}
+              animation="slide"
+              translateRatio={150}
             >
               <h2>{title}</h2>
             </Carousel.CarouselItem>

@@ -20,11 +20,11 @@ interface CarouselContextInterface {
 
 export const CarouselCtx = createContext<CarouselContextInterface>({
   activeIndex: 0,
-  setActiveIndex: (index) => {},
+  setActiveIndex: (index) => index,
   dataLength: 0,
-  setDataLength: (length) => {},
-  onTouchStart: (e) => {},
-  onTouchMove: (e) => {}
+  setDataLength: (length) => length,
+  onTouchStart: (e) => e,
+  onTouchMove: (e) => e
 });
 
 export type CarouselItem = {
@@ -82,7 +82,9 @@ const Carousel = ({ data, children }: CarouselProps): JSX.Element => {
       }
     });
     return () => {
-      document.removeEventListener('keydown', () => {});
+      document.removeEventListener('keydown', () => {
+        return;
+      });
     };
   }, []);
 
