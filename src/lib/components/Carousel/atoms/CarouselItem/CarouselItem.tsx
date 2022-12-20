@@ -30,7 +30,7 @@ const CarouselItem = ({
   }, [index, activeIndex, translateRatio]);
 
   const zIndex = useMemo(() => {
-    if (index === activeIndex) return dataLength + 1;
+    if (index === activeIndex) return dataLength;
     return dataLength - Math.abs(index - activeIndex);
   }, [index, activeIndex]);
 

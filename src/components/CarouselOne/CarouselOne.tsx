@@ -10,7 +10,7 @@ import styles from './CarouselOne.module.scss';
 const CarouselOne = (): JSX.Element => {
   const { data: usersCollectionData } = useGetUsersCollectionsQuery(null);
   return (
-    <Carousel data={usersCollectionData || []}>
+    <Carousel dataLengthProps={usersCollectionData?.length || 0}>
       <Carousel.CarouselView className={styles.carousel_view}>
         <>
           <Carousel.ArrowButton

@@ -9,7 +9,7 @@ const CarouselTwo = () => {
   const { data: usersStories } = useGetUsersStoriesQuery(null);
 
   return (
-    <Carousel data={usersStories || []}>
+    <Carousel dataLengthProps={usersStories?.length || 0}>
       <Carousel.CarouselView className={styles.carousel_view}>
         <>
           <Carousel.ArrowButton

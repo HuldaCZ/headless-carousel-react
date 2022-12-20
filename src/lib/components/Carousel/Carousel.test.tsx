@@ -32,7 +32,7 @@ const data = [
 
 test('render image ass css backgound and display title as child', () => {
   render(
-    <Carousel data={data}>
+    <Carousel dataLengthProps={data.length}>
       <Carousel.CarouselView>
         {data.map(({ image, title }, index) => (
           <Carousel.CarouselItem key={index} index={index} className="carousel_item" {...{ image }}>
@@ -52,7 +52,7 @@ test('render image ass css backgound and display title as child', () => {
 
 test('after clicking on left button activeIndex value in context should increase by 1', () => {
   render(
-    <Carousel data={data}>
+    <Carousel dataLengthProps={data.length}>
       <Carousel.ArrowButton side="left" />
       <Carousel.CarouselView>
         {data.map(({ image, title }, index) => (
@@ -68,13 +68,13 @@ test('after clicking on left button activeIndex value in context should increase
   act(() => {
     leftButton.click();
   });
-  const image = screen.getByTestId('carousel-item-1');
+  const image = screen.getByTestId('carousel-item-3');
   expect(image).toHaveStyle(`z-index: 4`);
 });
 
 test('after clicking on right button activeIndex value in context should decrease by 1', () => {
   render(
-    <Carousel data={data}>
+    <Carousel dataLengthProps={data.length}>
       <Carousel.ArrowButton side="right" />
       <Carousel.CarouselView>
         {data.map(({ image, title }, index) => (
@@ -90,13 +90,13 @@ test('after clicking on right button activeIndex value in context should decreas
   act(() => {
     rightButton.click();
   });
-  const image = screen.getByTestId('carousel-item-3');
+  const image = screen.getByTestId('carousel-item-1');
   expect(image).toHaveStyle(`z-index: 4`);
 });
 
 test('select item after clicking on carousel control number', () => {
   render(
-    <Carousel data={data}>
+    <Carousel dataLengthProps={data.length}>
       <Carousel.CarouselView>
         {data.map(({ image, title }, index) => (
           <Carousel.CarouselItem key={index} index={index} className="carousel_item" {...{ image }}>
